@@ -1,0 +1,30 @@
+{
+  "name": "nepali-calendar",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "yarn clean && tsc",
+    "build:watch": "tsc -w",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "prepare": "yarn build",
+    "prepublishOnly": "yarn test && yarn lint"
+  },
+  "dependencies": {
+    "@types/jquery": "^3.5.32",
+    "date-fns": "^4.1.0",
+    "jquery": "^3.7.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
