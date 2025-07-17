@@ -58,7 +58,6 @@ export const getWeekNames = (lang: Language = "np", length: Length) => {
   return null;
 };
 
-//TODo
 export function getValidYears(
   lang: Language,
   calendarType: CalendarType
@@ -88,13 +87,10 @@ export function getValidYears(
     for (let i = BSdata.minAdYear; i <= BSdata.maxAdYear; i++) {
       arr.push(i);
     }
-    //TODO
     return arr;
   }
 }
 
-// type EachNumeral = keyof typeof BSdata.nums;
-// type Numeral = typeof BSdata.nums[EachNumeral];
 export const getNepaliNumber = (n: number | string) => {
   if (isNaN(+n)) {
     throw new TypeError(`Expected Number  instead got ${typeof n} value=${n}`);
@@ -166,8 +162,6 @@ const getYearCalendarData = (year: number): number[] => {
   return yearData;
 };
 
-//month =1 for Baisakh
-//TODO error checking
 export const ad2bs = (years: number, months: number, date: number) => {
   const { base_bs, calendar_data } = BSdata;
   const dayCount = countBSDaysFromBaseDateUsingAdDate(years, months, date);
@@ -199,8 +193,6 @@ export const ad2bs = (years: number, months: number, date: number) => {
     getYearCalendarData(year);
   }
 
-
-
   return {
     year,
     month: month + 1, // one is added because month is 0 based
@@ -209,8 +201,6 @@ export const ad2bs = (years: number, months: number, date: number) => {
   };
 };
 
-//month =1 for Baisakh
-//TODO error checking
 export const bs2ad = (year: number, month: number, day: number) => {
   const { base_ad, calendar_data } = BSdata;
 
@@ -259,24 +249,24 @@ type RangeDetail = {
   from: DateDetail;
   to: DateDetail;
 };
-// export const getBsRangeForAdCalendar = (
-//   year: number,
-//   month: number
-// ): RangeDetail => {
-//   const allNepaliMonth = getMonthNames("np", "full");
+export const getBsRangeForAdCalendar = (
+  year: number,
+  month: number
+): RangeDetail => {
+  const allNepaliMonth = getMonthNames("np", "full");
 
-//   const bsfirst = ad2bs(year, month, 1);
-//   const lastDate = getTotalDaysInAdMonth(year, month);
-//   const bsLast = ad2bs(year, month, lastDate);
+  const bsfirst = ad2bs(year, month, 1);
+  const lastDate = getTotalDaysInAdMonth(year, month);
+  const bsLast = ad2bs(year, month, lastDate);
 
-//   const firstMonth = allNepaliMonth[bsfirst.month - 1];
-//   const lastMonth = allNepaliMonth[bsLast.month - 1];
+  const firstMonth = allNepaliMonth[bsfirst.month - 1];
+  const lastMonth = allNepaliMonth[bsLast.month - 1];
 
-//   return {
-//     from: { ...bsfirst, monthName: firstMonth },
-//     to: { ...bsLast, monthName: lastMonth },
-//   };
-// };
+  return {
+    from: { ...bsfirst, monthName: firstMonth },
+    to: { ...bsLast, monthName: lastMonth },
+  };
+};
 export const getAdRangeForBsCalendar = (
   year: number,
   month: number
