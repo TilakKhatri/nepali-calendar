@@ -15,16 +15,17 @@ import {
   getWeekNames,
   getValidYears,
   getNepaliNumber,
-//   getBsRangeForAdCalendar,
+  getBsRangeForAdCalendar,
   getAdRangeForBsCalendar,
   getBsInfoOfoffsetDate
 } from "../core/conversionMethods";
+import { getNewBsDate, getNewAdDate } from "../core/newDateCalculation";
 
+
+/*
 console.log("\n=== Date Conversion Tests ===");
 console.log("ad2bs(2024, 1, 15):", ad2bs(2024, 2, 31));
 console.log("bs2ad(2081, 11, 19):", bs2ad(2081, 11, 19));
-/*
-console.log("bs2ad(2080, 10, 2):", bs2ad(2080, 10, 2));
 
 console.log("\n=== Month and Week Names Tests ===");
 console.log("getMonthNames('np', 'full'):", getMonthNames("np", "full"));
@@ -47,6 +48,11 @@ console.log("getAdRangeForBsCalendar(2080, 10):", getAdRangeForBsCalendar(2080, 
 console.log("\n=== Offset Date Tests ===");
 console.log("getBsInfoOfoffsetDate(2080, 10):", getBsInfoOfoffsetDate(2080, 10));
 console.log("getBsInfoOfoffsetDate(2080, 10, { year: 1, month: 2 }):", getBsInfoOfoffsetDate(2080, 10, { year: 1, month: 2 }));
+
+console.log("\n=== New Date Calculation Tests ===");
+console.log("getNewBsDate({ year: 1, month: 2 }, { year: 2081, month: 11, date: 19 }):", getNewBsDate({ year: 1, month: 2 }, { year: 2081, month: 11, date: 19 }));
+console.log("getNewAdDate({ year: 1, month: 2 }, { year: 2081, month: 11, date: 19 }):", getNewAdDate({ year: 1, month: 2 }, { year: 2000, month: 11, date: 19 }));
+
 
 console.log("getTotalDaysInBsMonth(2081, 2):", getTotalDaysInBsMonth(2081, 2));
 console.log("parseDate('2082-02-15', 'yyyy-mm-dd'):", parseDate("2082-02-15", "yyyy-mm-dd"));

@@ -68,8 +68,9 @@ export interface DateType {
     range?: DateRange;
   };
   
+  type Size = "small" | "large";
   interface IDatePicker extends INepaliCalendar {
-    size: "small" | "large"; // TODO: add size prop
+    size: Size; 
     onChange: onChangeProps;
     isClearable: boolean;
     value: string;

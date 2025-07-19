@@ -11,4 +11,3 @@ export function isInBetween(data: any, first: any, last: any): boolean {
   export function getTotalDaysInAdMonth(year: number, month: number): number {
     return new Date(year, month, 0).getDate();
   }
-  
