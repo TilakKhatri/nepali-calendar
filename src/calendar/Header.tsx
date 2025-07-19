@@ -8,15 +8,16 @@ import {
   getNepaliNumber,
   getValidYears,
 } from '../core/conversionMethods';
+import { useCalendarType } from './CalendarTypeContext';
 
 type OffsetChange = (offset: number) => void;
 
 type HeaderProps = {
   year: number;
   month: number;
+  isAD: boolean;
   changeYear: OffsetChange;
   changeMonth: OffsetChange;
-  isAD: boolean;
   showMonthDropdown: ShowDropdownType;
   showYearDropdown: ShowYearDropdownType;
   showExtra: boolean;
@@ -25,9 +26,9 @@ type HeaderProps = {
 const Header = ({
   year,
   month,
+  isAD,
   changeYear,
   changeMonth,
-  isAD,
   showMonthDropdown,
   showYearDropdown,
   showExtra,

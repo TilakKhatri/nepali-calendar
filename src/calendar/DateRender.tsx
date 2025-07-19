@@ -1,0 +1,100 @@
+import React from "react";
+import { DateRange, DisableProps, IDateObject } from "../types/main";
+import useCalendarData from "./useCalendarDate";
+import { checkIsInRange, checkIsSelected, checkIsDisabled } from "../core/utils";
+
+interface DateRendererProps extends DisableProps {
+  isAD: boolean;
+  selectedData: IDateObject;
+  shouldPressOK: boolean;
+  onChangeDate: (adDate: IDateObject, bsDate: IDateObject) => void;
+  showExtra: boolean;
+  changeMonth: (n: number) => void;
+  range?: DateRange | null;
+  dateFormat: string;
+  year: number;
+  month: number;
+}
+
+const DateRenderer = (props: DateRendererProps) => {
+  const {
+    isAD,
+    selectedData,
+    shouldPressOK,
+    onChangeDate,
+    showExtra,
+    year,
+    month,
+    changeMonth,
+    range,
+    disableDate,
+    disableFuture,
+    disablePast,
+    maxDate,
+    minDate,
+    dateFormat,
+  } = props;
+  const weekData = useCalendarData(year, month, isAD);
+  return (
+    <>
+      {weekData.map(({ data, key }, week) => {
+        return (
+          <tr key={key}>
+            {data.map((d, i) => {
+              const isDisabled = checkIsDisabled(
+                d.adDate,
+                {
+                  disableDate,
+                  disableFuture,
+                  disablePast,
+                  maxDate,
+                  minDate,
+                },
+                dateFormat,
+                d.bsDate
+              );
+
+              const isSelected =
+                d.isCurrentMonth && checkIsSelected(selectedData, d.adDate);
+              const isInRange = range ? checkIsInRange(d.adDate, range) : false;
+
+              return (
+                <td
+                  key={i}
+                  title={`${d.main.year}/${d.main.month}/${d.main.date}`}
+                  onClick={(e) => {
+                    if (isDisabled) {
+                      return;
+                    }
+                    if (!d.isCurrentMonth) {
+                      if (week === 0) {
+                        changeMonth(-1);
+                      } else {
+                        changeMonth(1);
+                      }
+                    }
+                    if (shouldPressOK) {
+                      onChangeDate(d.adDate, d.bsDate);
+                    }
+                  }}
+                  className={`rl-picker-cell ${d.isToday ? "today" : ""} ${
+                    isSelected ? "active" : ""
+                  } ${!d.isCurrentMonth ? "other-month" : ""} ${
+                    isDisabled ? "disabled" : ""
+                  }  ${isInRange ? "in-range" : ""}`}
+                >
+                  <div className={`rl-picker-cell-inner `}>
+                    <div className="BS">{d.render.main}</div>
+                    {showExtra && <div className="AD">{d.render.sub}</div>}
+                  </div>
+                </td>
+              );
+            })}
+          </tr>
+        );
+      })}
+    </>
+  );
+};
+
+export default DateRenderer;
