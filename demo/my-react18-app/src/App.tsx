@@ -1,6 +1,7 @@
 import './App.css';
 import { useState } from 'react';
 import DatePicker from '../../../src/datepicker';
+import '../../../src/styles.css';
 
 function App() {
   const [dateBS, setDateBS] = useState<string | null>(null);
@@ -13,6 +14,8 @@ function App() {
         <div style={{ marginBottom: 150 }}>
           <div style={{ width: 250 }}>
             <DatePicker
+              showMonthDropdown={true}
+              showYearDropdown={true}
               size="small"
               value={dateBS ?? ''}
               dateFormat={'YYYY-MM-DD'}

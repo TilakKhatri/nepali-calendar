@@ -253,7 +253,7 @@ export const getBsRangeForAdCalendar = (
   year: number,
   month: number
 ): RangeDetail => {
-  const allNepaliMonth = getMonthNames("np", "full");
+  const allNepaliMonth = getMonthNames("np", "short");
 
   const bsfirst = ad2bs(year, month, 1);
   const lastDate = getTotalDaysInAdMonth(year, month);
