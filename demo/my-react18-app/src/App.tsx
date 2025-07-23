@@ -1,6 +1,5 @@
 import './App.css';
-import { DatePicker } from 'nepali-calendar';
-import '../../../src/styles.css';
+import { DatePicker } from 'patro-nepali';
 
 function App() {
 

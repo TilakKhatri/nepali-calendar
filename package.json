@@ -1,5 +1,5 @@
 {
-  "name": "nepali-calendar",
+  "name": "hamro-nepali-patro",
   "version": "1.0.0",
   "description": "A modern React component library for Nepali (Bikram Sambat, BS) and Gregorian (AD) calendar date picking, conversion, and utilities. Includes a customizable datepicker, BS/AD conversion, and Nepali date functions.",
   "license": "MIT",
@@ -49,7 +49,7 @@
     "typescript"
   ],
   "scripts": {
-    "build": "yarn build:types && rollup -c",
+    "build": "yarn build:types && rollup -c && cp src/styles.css dist/styles.css",
     "build:types": "tsc --emitDeclarationOnly --declaration --outDir dist",
     "dev": "rollup -cw",
     "prepare": "run-s build",
