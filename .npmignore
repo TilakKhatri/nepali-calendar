@@ -1,0 +1,29 @@
+# Exclude everything by default
+*
+
+# But include built output and essential files
+!dist/
+!src/styles.css
+!package.json
+!README.md
+
+# Exclude test, demo, and config files
+node_modules/
+demo/
+tests/
+coverage/
+.storybook/
+storybook-static/
+config/
+*.test.*
+*.spec.*
+*.mdx
+*.stories.*
+*.story.*
+setupTests.ts
+vitest.config.ts
+.yarn/
+.yarnrc
+.git/
+.gitignore
+.env 
