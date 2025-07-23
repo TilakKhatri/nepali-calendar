@@ -1,6 +1,6 @@
 import './App.css';
-import { DatePicker } from 'patro-nepali';
-
+import { DatePicker } from 'hamro-nepali-patro';
+import 'hamro-nepali-patro/dist/styles.css';
 function App() {
 
 
