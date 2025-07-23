@@ -33,6 +33,16 @@ const DatePicker = (props: IDatePicker) => {
     placehoder,
     hideOnSelect = true,
     onSelect,
+    inputStyle,
+    inputClassName,
+    placeholderColor,
+    calendarIconStyle,
+    calendarIconClassName,
+    crossIconStyle,
+    crossIconClassName,
+    theme,
+    calendarStyle,
+    calendarClassName,
     ...otherProps
   } = props;
 
@@ -139,26 +149,42 @@ const DatePicker = (props: IDatePicker) => {
     setEnteredDate(value);
   };
 
+  // Compose style for wrapper: theme CSS vars + placeholderColor
+  const wrapperStyle = (theme || placeholderColor)
+    ? {
+        ...(theme ? Object.keys(theme).reduce((acc, key) => {
+          acc[`--${key}`] = theme[key];
+          return acc;
+        }, {} as any) : {}),
+        ...(placeholderColor ? { '--datepicker-placeholder-color': placeholderColor } : {}),
+      }
+    : undefined;
+
   return (
     <div
       id={random_id}
       className="rl-nepali-datepicker-wrapper"
       ref={containerRef}
+      style={wrapperStyle}
     >
       {isClearable && (
         <CrossIcon
-          visible={!!selectedDate}
+          className={`cross-icon${crossIconClassName ? ' ' + crossIconClassName : ''}`}
+          visible={!!selectedDate || !!entetereDate}
           onClick={() => {
+            setSelectedDate("");
+            setEnteredDate("");
             typeof onChange === "function" && onChange("");
           }}
+          style={crossIconStyle}
         />
       )}
       <div className="input-wrapper">
         <input
           ref={inputRef}
           onClick={() => setIsVisible(true)}
-          className={`rl-nepali-datepicker-input ${size}`}
-          value={entetereDate} // TODO convert  AD to BS and ....
+          className={`rl-nepali-datepicker-input ${size}${inputClassName ? ' ' + inputClassName : ''}`}
+          value={entetereDate} 
           placeholder={`${placehoder ?? dateFormat} (${calendarType})`}
           onChange={handleChange}
           onKeyDown={(e) => {
@@ -167,19 +193,20 @@ const DatePicker = (props: IDatePicker) => {
               inputRef.current?.blur();
             }
           }}
-          // onFocus={() => setIsVisible(true)}
-          // onBlur={handleBlur}
+          style={inputStyle}
         />
-
-        <CalendarIcon
-          onClick={() => setIsVisible(true)}
-          className="rl-nepali-datepicker-icon hand-cursor"
-        />
+        <span className="icon-left">
+          <CalendarIcon
+            onClick={() => setIsVisible(true)}
+            className={`rl-nepali-datepicker-icon hand-cursor${calendarIconClassName ? ' ' + calendarIconClassName : ''}`}
+            style={calendarIconStyle}
+            color={calendarIconStyle && calendarIconStyle.color ? calendarIconStyle.color : (crossIconStyle && crossIconStyle.color ? crossIconStyle.color : undefined)}
+          />
+        </span>
       </div>
       {isVisible && (
-        <div ref={popupRef} style={{ zIndex: 999 }}>
+        <div ref={popupRef} style={{ zIndex: 999, ...calendarStyle }} className={calendarClassName}>
           <NepaliCalendar
-            // defaultValue={selectedDate}
             value={selectedDate}
             showExtra={true}
             disableDate={props.disableDate}
@@ -193,6 +220,9 @@ const DatePicker = (props: IDatePicker) => {
               typeof onChange === "function" &&
                 onChange(formattedDate, adDate, bsDate, dateString);
             }}
+            theme={theme}
+            calendarStyle={calendarStyle}
+            calendarClassName={calendarClassName}
             {...otherProps}
           />
         </div>
