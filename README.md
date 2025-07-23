@@ -2,10 +2,6 @@
 
 A modern React component library for Nepali (Bikram Sambat, BS) and Gregorian (AD) calendar date picking, conversion, and utilities.  
 Includes a customizable datepicker, calendar component, and robust BS/AD conversion functions.
-
-[![npm version](https://img.shields.io/npm/v/hamro-nepali-patro.svg)](https://www.npmjs.com/package/hamro-nepali-patro)
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-
 ---
 
 ## Features
