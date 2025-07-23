@@ -27,6 +27,10 @@ const NepaliCalendar = (props: INepaliCalendar) => {
     maxDate,
     minDate,
     range,
+    theme,
+    calendarStyle,
+    calendarClassName,
+    ...otherProps
   } = props;
 
   useEffect(() => {
@@ -104,7 +108,13 @@ const NepaliCalendar = (props: INepaliCalendar) => {
     : null;
 
   return (
-    <div className="rl-nepali-date-panel-wrapper">
+    <div
+      className={`rl-nepali-date-panel-wrapper${calendarClassName ? ' ' + calendarClassName : ''}`}
+      style={theme ? Object.keys(theme).reduce((acc, key) => {
+        acc[`--${key}`] = theme[key];
+        return acc;
+      }, { ...calendarStyle } as any) : calendarStyle}
+    >
       <div className="rl-nepali-date-panel">
         <Header
           isAD={isAD}
@@ -115,6 +125,7 @@ const NepaliCalendar = (props: INepaliCalendar) => {
           showExtra={showExtra}
           showMonthDropdown={showMonthDropdown}
           showYearDropdown={showYearDropdown}
+          // Optionally pass theme/calendarStyle/calendarClassName if Header needs them
         />
         <div className="rl-nepali-date-body">
           <table className="rl-nepali-date-content">
@@ -143,6 +154,7 @@ const NepaliCalendar = (props: INepaliCalendar) => {
                 maxDate={maxDate}
                 minDate={minDate}
                 dateFormat={dateFormat}
+                // Optionally pass theme/calendarStyle/calendarClassName if DateRender needs them
               />
             </tbody>
           </table>

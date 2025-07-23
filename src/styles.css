@@ -43,29 +43,90 @@
 }
 .input-wrapper {
   position: relative;
-  display: inline-block;
+  display: flex;
+  align-items: center;
   width: 100%;
   min-width: 0;
-  padding: 4px 11px;
-  color: rgba(0, 0, 0, 0.65);
-  font-size: 14px;
-  line-height: 1.5715;
-  background-color: #fff;
-  background-image: none;
-  border: 1px solid #d9d9d9;
-  border-radius: 2px;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-.input-wrapper input {
   padding: 0;
-  border: none;
-  outline: none;
+  background-color: transparent;
+  border:none;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(56, 81, 163, 0.07);
+  transition: border 0.2s, box-shadow 0.2s;
 }
-.hand-cursor {
-  cursor: pointer !important;
+/* .input-wrapper:focus-within {
+  border-color: var(--cl-primary);
+  box-shadow: 0 2px 8px rgba(56, 81, 163, 0.15);
+} */
+.rl-nepali-datepicker-input {
+  width: 100%;
+  padding: 10px 36px 10px 1.8rem;
+  border: 1px solid #d7d6d6;
+  outline: none;
+  font-size: 1rem;
+  background: transparent;
+  border-radius: 6px;
+  color: var(--gray90);
+}
+.rl-nepali-datepicker-input::placeholder {
+  color: var(--datepicker-placeholder-color, #aaa);
+}
+.icon-left {
+  position: absolute;
+  left: .2rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  z-index: 2;
+}
+.icon-right {
+  position: absolute;
+  right: 2.5rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  z-index: 2;
+}
+ .icon-right .cross-icon {
+  opacity: 1;
+  cursor: pointer;
+  transition: background 0.2s;
+  background: var(--cl-secondary);
+  color: #fff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+ .cross-icon:hover {
+  background: var(--cl-danger);
+  cursor: pointer;
+}
+.rl-nepali-datepicker-icon {
+  width: 20px;
+  height: 20px;
+  filter: invert(59%) sepia(19%) saturate(232%) hue-rotate(179deg) brightness(93%) contrast(86%);
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+/* .rl-nepali-datepicker-icon:hover {
+  filter: invert(34%) sepia(99%) saturate(749%) hue-rotate(340deg) brightness(99%) contrast(101%);
+} */
+@media (max-width: 600px) {
+  .input-wrapper {
+    font-size: 0.95rem;
+  }
+  .rl-nepali-datepicker-input {
+    padding: 8px 32px 8px 32px;
+    font-size: 0.95rem;
+  }
+  .icon-left, .icon-right {
+    left: 6px;
+    right: 6px;
+  }
 }
 
 .rl-nepali-calendar__month-select {
@@ -102,37 +163,9 @@
   background-color: white;
   color: black;
 }
-.rl-nepali-datepicker-icon {
-  width: 16px;
-  filter: invert(59%) sepia(19%) saturate(232%) hue-rotate(179deg)
-    brightness(93%) contrast(86%);
-}
-
 .rl-nepali-datepicker-wrapper {
   position: relative;
   /* width: fit-content; */
-}
-
-.rl-nepali-datepicker-input {
-  width: 100%;
-}
-
-.popovercalendar .ant-popover-inner-content {
-  padding: 0px;
-}
-
-.today-btn {
-  color: var(--cl-primary);
-  font-weight: 600;
-}
-
-.rl-nepali-datepicker-content {
-  position: absolute;
-  z-index: 4;
-  box-shadow: 0px 4px 10px rgba(19, 31, 54, 0.25);
-  background-color: white;
-  top: 24px;
-  right: 0px;
 }
 
 .rl-nepali-datepicker-wrapper ul {

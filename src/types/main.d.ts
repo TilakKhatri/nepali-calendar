@@ -80,6 +80,16 @@ export interface DateType {
     children?: React.ReactNode;
     showDelimiter?: boolean;
     showCalenderOnlyWhenIconIsClicked?: boolean;
+    inputStyle?: React.CSSProperties;
+    inputClassName?: string; // Custom class for input
+    placeholderColor?: string; // Placeholder text color
+    calendarIconStyle?: React.CSSProperties; // Style for calendar icon
+    calendarIconClassName?: string; // Class for calendar icon
+    crossIconStyle?: React.CSSProperties; // Style for cross icon
+    crossIconClassName?: string; // Class for cross icon
+    theme?: Record<string, string>;
+    calendarStyle?: React.CSSProperties;
+    calendarClassName?: string;
   }
   
   export interface INepaliCalendar extends DisableProps, RangeProps {
@@ -90,13 +100,16 @@ export interface DateType {
     value?: string | null;
     showMonthDropdown?: ShowDropdownType;
     showYearDropdown?: ShowYearDropdownType;
-    onSelect: onSelectProps;
+    onSelect?: onSelectProps;
     shouldPressOK?: boolean;
     showExtra?: boolean;
     withReference?: boolean;
     reference_date?: string;
     rangeReference?: number[];
     calendarType: CalendarType;
+    theme?: Record<string, string>;
+    calendarStyle?: React.CSSProperties;
+    calendarClassName?: string;
   }
   
   export interface ICalendarRange {
