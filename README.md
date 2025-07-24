@@ -2,6 +2,7 @@
 
 A modern React component library for Nepali (Bikram Sambat, BS) and Gregorian (AD) calendar date picking, conversion, and utilities.  
 Includes a customizable datepicker, calendar component, and robust BS/AD conversion functions.
+
 ---
 
 ## Features

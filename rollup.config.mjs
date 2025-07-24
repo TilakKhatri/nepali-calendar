@@ -2,6 +2,7 @@ import external from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
+import babel from '@rollup/plugin-babel';
 
 export default [
   {
@@ -26,9 +27,23 @@ export default [
       commonjs(),
       typescript({
         tsconfig: './tsconfig.json',
-        declaration: true,
-        declarationDir: 'dist',
         sourceMap: true,
+        // Remove declaration options, handled by tsc
+      }),
+      babel({
+        babelHelpers: 'bundled',
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        exclude: 'node_modules/**',
+        presets: [
+          [
+            '@babel/preset-env',
+            {
+              targets: '>0.25%, not dead',
+              modules: false,
+            },
+          ],
+        ],
+        plugins: ['@babel/plugin-proposal-class-properties'],
       }),
     ],
   },
