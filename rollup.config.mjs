@@ -28,12 +28,11 @@ export default [
       typescript({
         tsconfig: './tsconfig.json',
         sourceMap: true,
-        // Remove declaration options, handled by tsc
       }),
       babel({
         babelHelpers: 'bundled',
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
-        exclude: 'node_modules/**',
+        // Remove exclude to allow transpiling dependencies
         presets: [
           [
             '@babel/preset-env',
@@ -42,8 +41,9 @@ export default [
               modules: false,
             },
           ],
+          '@babel/preset-react'
         ],
-        plugins: ['@babel/plugin-proposal-class-properties'],
+        plugins: ['@babel/plugin-transform-class-properties'],
       }),
     ],
   },
