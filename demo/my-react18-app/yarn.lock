@@ -1115,10 +1115,10 @@ graphemer@^1.4.0:
   resolved "https://registry.yarnpkg.com/graphemer/-/graphemer-1.4.0.tgz#fb2f1d55e0e3a1849aeffc90c4fa0dd53a0e66c6"
   integrity sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==
 
-hamro-nepali-patro@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/hamro-nepali-patro/-/hamro-nepali-patro-1.1.0.tgz#fe9e9e0df1055487c84070029c81e5ac47f06ec3"
-  integrity sha512-QpL5RQul2F+VxkSxjI79fRZHwIHw9wz+XSC7fsFIo4uuIppaS56o+jCNSzFabrgD0QiMomYE0I7Hwcpps8FL9g==
+hamro-nepali-patro@^1.1.11:
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/hamro-nepali-patro/-/hamro-nepali-patro-1.1.11.tgz#aef579d5c151fad9d018e03c2f55a283a381becd"
+  integrity sha512-E440W+UVb9HhSwHZb0j7LZ9DMN2kX/I04y9L2g83stND8A6566cjhuoxbBUwerDlDZ6BrYpl42a0b1p46zRD8g==
   dependencies:
     "@popperjs/core" "^2.11.8"
     date-fns "^4.1.0"
@@ -1333,14 +1333,6 @@ path-key@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/path-key/-/path-key-3.1.1.tgz#581f6ade658cbba65a0d3380de7753295054f375"
   integrity sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==
-
-patro-nepali@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/patro-nepali/-/patro-nepali-1.0.0.tgz#a219d7833758ee5b34bfc4b0aab3542e7b72af6d"
-  integrity sha512-Y+QgrQEYbuF/d+HA8AO2MmUPQ+qwJ2Lx7k+Z13QsYhGShgaYobwvAgZL9tguwSHaytOtDobKy7C0QNRiYrn+Cw==
-  dependencies:
-    "@popperjs/core" "^2.11.8"
-    date-fns "^4.1.0"
 
 picocolors@^1.1.1:
   version "1.1.1"

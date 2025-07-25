@@ -184,7 +184,7 @@ const DatePicker = (props: IDatePicker) => {
           ref={inputRef}
           onClick={() => setIsVisible(true)}
           className={`rl-nepali-datepicker-input ${size}${inputClassName ? ' ' + inputClassName : ''}`}
-          value={entetereDate} 
+          value={entetereDate || selectedDate} 
           placeholder={`${placehoder ?? dateFormat} (${calendarType})`}
           onChange={handleChange}
           onKeyDown={(e) => {

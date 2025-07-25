@@ -12,11 +12,11 @@ function App() {
               showMonthDropdown={true}
               showYearDropdown={true}
               size="small"
-              value={ ''}
+              value={'२०८२-०४-१०'}
               dateFormat={'YYYY-MM-DD'}
               placehoder={'Select BS Date'}
               hideOnSelect={false}
-              onChange={(val) => {
+              onChange={(val: any) => {
                 console.log('BS onChange val', val);
               }}
               isClearable={true}
@@ -44,18 +44,38 @@ function App() {
             />
           </div>
         </div>
-
+              <DatePicker
+                showMonthDropdown={true}
+                showYearDropdown={true}
+                size="small"
+                value={'2025-07-25'}
+                dateFormat={'YYYY-MM-DD'}
+                isClearable={false}
+                onChange={(val: any) => {
+                  console.log('AD onChange val', val);
+                }}
+                hideOnSelect={false}
+                calendarType={'AD'}
+                inputStyle={{
+                  borderBottom: '2px dotted #4e00a8',
+                  color: '#4e00a8',
+                }}
+                inputClassName="custom-input-ad"
+                placeholderColor="#4e00a8"
+                calendarIconStyle={{ color: '#4e00a8' }}
+                calendarIconClassName="custom-calendar-icon-ad" 
+              />
         <div style={{ marginBottom: 150 }}>
           <div style={{ width: 250 }}>
             <DatePicker
               showMonthDropdown={true}
               showYearDropdown={true}
               size="small"
-              value={''}
+              value={'2025-07-25'}
               dateFormat={'YYYY-MM-DD'}
               placehoder={'Select AD Date'}
               hideOnSelect={false}
-              onChange={(val) => {
+              onChange={(val: any) => {
                 console.log('AD onChange val', val);
               }}
               isClearable={true}

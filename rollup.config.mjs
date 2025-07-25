@@ -1,4 +1,3 @@
-import external from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
@@ -20,7 +19,6 @@ export default [
       },
     ],
     plugins: [
-      external(),
       resolve({
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       }),
@@ -32,12 +30,14 @@ export default [
       babel({
         babelHelpers: 'bundled',
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
-        // Remove exclude to allow transpiling dependencies
+        include: ['src/**/*', 'node_modules/**'],
         presets: [
           [
             '@babel/preset-env',
             {
-              targets: '>0.25%, not dead',
+              targets: {
+                ie: '11'
+              },
               modules: false,
             },
           ],
@@ -46,5 +46,6 @@ export default [
         plugins: ['@babel/plugin-transform-class-properties'],
       }),
     ],
+    external: ['react', 'react-dom'],
   },
 ];
