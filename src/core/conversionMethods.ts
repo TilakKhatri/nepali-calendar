@@ -155,7 +155,7 @@ const getDayIndex = (daysCount: number) =>
  * @returns Array of days for each month in the year
  */
 const getYearCalendarData = (year: number): number[] => {
-  const yearData = BSdata.calendar_data[year as EachBSYear];
+  const yearData = BSdata.calendar_data[year as keyof typeof BSdata.calendar_data];
   if (!Array.isArray(yearData)) {
     throw new Error(`Invalid calendar data for year ${year}. Expected array, got ${typeof yearData}`);
   }
@@ -207,7 +207,7 @@ export const bs2ad = (year: number, month: number, day: number) => {
   const cumulativeData = cache.getCumulativeTotal();
 
   let prevMonthCumulativeTotal = 0;
-  const prevYearCumulativeTotal = cumulativeData[+year - 1];
+  const prevYearCumulativeTotal = cumulativeData[+year - 1] || 0;
   for (let i = 0; i < +month - 1; i++) {
     prevMonthCumulativeTotal += getYearCalendarData(+year)[i];
   }

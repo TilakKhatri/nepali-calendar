@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import { DatePicker } from 'hamro-nepali-patro';
+// import {DatePicker} from '../../../src/index';
 import 'hamro-nepali-patro/dist/styles.css';
 function App() {
 const [selectedDate, setSelectedDate] = useState<string | null>(null);
@@ -16,8 +17,8 @@ const handleDateChange = (date: string) => {
             <DatePicker
               showMonthDropdown={true}
               showYearDropdown={true}
-              value={selectedDate}
-              selected={selectedDate}
+              value={selectedDate || ''}
+              // selected={selectedDate}
               onSelect={handleDateChange}
               size="small"
               dateFormat={'YYYY-MM-DD'}

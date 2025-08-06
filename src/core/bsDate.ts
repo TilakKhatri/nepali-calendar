@@ -8,7 +8,7 @@ export const getTotalDaysInBsMonth = (year: number, month: number): number => {
 
     const monthIndex = +month - 1;
     if (year && allYears.includes(year.toString()) && monthIndex <= 12) {
-      return calendar_data[year as EachBSYear][monthIndex];
+      return calendar_data[year as keyof typeof calendar_data][monthIndex];
     } else
       throw new RangeError(
         `Expeceted first paramater as year within range ${minBsYear}-${maxBsYear} and second parameter as month within range 0-12. But got year as ${year} and month as ${month} in getNumberOfDaysInMonth function`
