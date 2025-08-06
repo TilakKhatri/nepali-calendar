@@ -5,6 +5,7 @@ import {
     isInValidRange,
     parseBsDate,
   } from "./conversionMethods";
+  import { getTotalDaysInBsMonth } from "./bsDate";
   import { isInBetween } from "../utils";
   import {
     CalendarType,
@@ -207,14 +208,22 @@ import {
   
     const nextYear = year + yearOffset;
     const nextMonth = monthOffset % 12 || 12;
-    const nextDate = date;
+    let nextDate = date;
   
-    //TODO only specified for BS. so causes issue for AD,
-    isInValidRange(
-      { year: nextYear, month: nextMonth, date: nextDate },
-      calendarType,
-      true
-    );
+    // Check if the current date is valid in the new month
+    if (calendarType === "BS") {
+      const totalDaysInNewMonth = getTotalDaysInBsMonth(nextYear, nextMonth);
+      if (nextDate > totalDaysInNewMonth) {
+        nextDate = totalDaysInNewMonth;
+      }
+    } else {
+      // For AD calendar, use standard JavaScript Date methods
+      const tempDate = new Date(nextYear, nextMonth - 1, 1);
+      const totalDaysInNewMonth = new Date(nextYear, nextMonth, 0).getDate();
+      if (nextDate > totalDaysInNewMonth) {
+        nextDate = totalDaysInNewMonth;
+      }
+    }
   
     return { year: nextYear, month: nextMonth, date: nextDate };
   };

@@ -1,8 +1,13 @@
+import { useState } from 'react';
 import './App.css';
 import { DatePicker } from 'hamro-nepali-patro';
 import 'hamro-nepali-patro/dist/styles.css';
 function App() {
+const [selectedDate, setSelectedDate] = useState<string | null>(null);
 
+const handleDateChange = (date: string) => {
+  setSelectedDate(date);
+};
 
   return (
     <div className="app-container">
@@ -11,14 +16,14 @@ function App() {
             <DatePicker
               showMonthDropdown={true}
               showYearDropdown={true}
+              value={selectedDate}
+              selected={selectedDate}
+              onSelect={handleDateChange}
               size="small"
-              value={'२०८२-०४-१०'}
               dateFormat={'YYYY-MM-DD'}
               placehoder={'Select BS Date'}
               hideOnSelect={false}
-              onChange={(val: any) => {
-                console.log('BS onChange val', val);
-              }}
+              onChange={handleDateChange}
               isClearable={true}
               calendarType={'BS'}
               inputStyle={{

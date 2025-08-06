@@ -6,6 +6,7 @@ import useSelectedData from "./useSelectedDate";
 import { getMonthOffset, checkDatePropsValidity } from "../core/utils";
 import { getDateFromObject } from "../date-fns";
 import { getWeekNames, formatBsDate } from "../core/conversionMethods";
+import { getTotalDaysInBsMonth } from "../core/bsDate";
 
 import { DateRange, INepaliCalendar, IDateObject } from "../types/main";
 
@@ -94,7 +95,22 @@ const NepaliCalendar = (props: INepaliCalendar) => {
     }
     const year = calendarData.year + offsetValue;
 
-    const date = calendarData.date;
+    let date = calendarData.date;
+    
+    // Check if the current date is valid in the new year
+    if (calendarType === "BS") {
+      const totalDaysInMonth = getTotalDaysInBsMonth(year, month);
+      if (date > totalDaysInMonth) {
+        date = totalDaysInMonth;
+      }
+    } else {
+      // For AD calendar, use standard JavaScript Date methods
+      const totalDaysInMonth = new Date(year, month, 0).getDate();
+      if (date > totalDaysInMonth) {
+        date = totalDaysInMonth;
+      }
+    }
+    
     setCalendarData({ year, month, date });
   };
 
