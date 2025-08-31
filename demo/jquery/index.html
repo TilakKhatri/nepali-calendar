@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepali DatePicker - jQuery Demo</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <link rel="stylesheet" href="../../dist/styles.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .demo-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .demo-section h2 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        .datepicker-container {
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #f9f9f9;
+        }
+        .datepicker-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        .output {
+            margin-top: 10px;
+            padding: 10px;
+            background: #e9ecef;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .button-group {
+            margin: 10px 0;
+        }
+        .button-group button {
+            margin-right: 10px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn-primary { background: #007bff; color: white; }
+        .btn-success { background: #28a745; color: white; }
+        .btn-danger { background: #dc3545; color: white; }
+        .btn-warning { background: #ffc107; color: black; }
+        
+        /* Custom styles for datepickers */
+        .custom-bs .rl-nepali-datepicker-input {
+            border-color: #ff9800;
+            color: #ff9800;
+        }
+        .custom-ad .rl-nepali-datepicker-input {
+            border-color: #4e00a8;
+            color: #4e00a8;
+        }
+        
+        /* Custom input styles */
+        .custom-input {
+            transition: all 0.3s ease;
+        }
+        
+        .custom-input:focus {
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <h1>Nepali DatePicker - jQuery Plugin Demo</h1>
+    
+    <div class="demo-section">
+        <h2>React-based DatePicker (with React dependencies)</h2>
+        <div class="datepicker-container">
+            <label>BS DatePicker (React):</label>
+            <div id="bs-datepicker-react"></div>
+            <div class="output" id="bs-react-output">No date selected</div>
+            <div class="button-group">
+                <button class="btn-primary" onclick="getBsReactValue()">Get Value</button>
+                <button class="btn-success" onclick="setBsReactValue()">Set Value (2081-01-15)</button>
+                <button class="btn-danger" onclick="destroyBsReact()">Destroy</button>
+            </div>
+        </div>
+        
+        <div class="datepicker-container">
+            <label>AD DatePicker (React):</label>
+            <div id="ad-datepicker-react"></div>
+            <div class="output" id="ad-react-output">No date selected</div>
+            <div class="button-group">
+                <button class="btn-primary" onclick="getAdReactValue()">Get Value</button>
+                <button class="btn-success" onclick="setAdReactValue()">Set Value (2024-01-15)</button>
+                <button class="btn-danger" onclick="destroyAdReact()">Destroy</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="demo-section">
+        <h2>Advanced Configuration Demo</h2>
+        <div class="datepicker-container">
+            <label>Custom Styled DatePicker:</label>
+            <div id="custom-datepicker"></div>
+            <div class="output" id="custom-output">No date selected</div>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Core Utilities Demo</h2>
+        <div class="datepicker-container">
+            <label>Date Conversion Examples:</label>
+            <div class="output" id="conversion-output">
+                <strong>AD to BS:</strong> 2024-01-15 → <span id="ad-to-bs">Calculating...</span><br>
+                <strong>BS to AD:</strong> 2081-01-15 → <span id="bs-to-ad">Calculating...</span><br>
+                <strong>Total days in BS month:</strong> 2081-01 → <span id="total-days">Calculating...</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Wait for the page to load
+        $(document).ready(function() {
+            console.log('Document ready, initializing datepickers...');
+            
+            // Check if React is available
+            if (typeof React === 'undefined') {
+                console.error('React is not loaded!');
+                return;
+            }
+            
+            if (typeof ReactDOM === 'undefined') {
+                console.error('ReactDOM is not loaded!');
+                return;
+            }
+            
+            // Check if our plugin is available
+            if (typeof $.fn.nepaliDatePicker === 'undefined') {
+                console.error('Nepali DatePicker plugin is not loaded!');
+                return;
+            }
+            
+            console.log('All dependencies loaded, initializing datepickers...');
+            
+            // Initialize React-based datepickers
+            $('#bs-datepicker-react').nepaliDatePicker({
+                value: '2081-01-01',
+                dateFormat: 'yyyy-mm-dd',
+                calendarType: 'BS',
+                placeholder: 'Select BS Date',
+                showMonthDropdown: true,
+                showYearDropdown: true,
+                shouldPressOK: true,
+                showExtra: true,
+                onChange: function(date, adDate, bsDate) {
+                    $('#bs-react-output').text(`Selected: ${date} (BS: ${JSON.stringify(bsDate)}, AD: ${JSON.stringify(adDate)})`);
+                }
+            });
+
+            $('#ad-datepicker-react').nepaliDatePicker({
+                value: '2024-01-01',
+                dateFormat: 'yyyy-mm-dd',
+                calendarType: 'AD',
+                placeholder: 'Select AD Date',
+                showMonthDropdown: true,
+                showYearDropdown: true,
+                shouldPressOK: true,
+                showExtra: true,
+                onChange: function(date, adDate, bsDate) {
+                    $('#ad-react-output').text(`Selected: ${date} (AD: ${JSON.stringify(adDate)}, BS: ${JSON.stringify(bsDate)})`);
+                }
+            });
+
+            // Initialize custom styled datepicker with all features
+            $('#custom-datepicker').nepaliDatePicker({
+                value: '2081-01-01',
+                dateFormat: 'yyyy-mm-dd',
+                calendarType: 'BS',
+                placeholder: 'Select BS Date',
+                size: 'large',
+                showMonthDropdown: 'full',
+                showYearDropdown: [2080, 2081, 2082, 2083, 2084, 2085],
+                shouldPressOK: true,
+                showExtra: true,
+                isClearable: true,
+                hideOnSelect: false,
+                inputStyle: {
+                    border: '2px solid #4CAF50',
+                    borderRadius: '8px',
+                    padding: '12px 16px',
+                    fontSize: '16px',
+                    color: '#4CAF50'
+                },
+                inputClassName: 'custom-input',
+                placeholderColor: '#4CAF50',
+                calendarIconStyle: {
+                    color: '#4CAF50',
+                    fontSize: '20px'
+                },
+                crossIconStyle: {
+                    background: '#4CAF50',
+                    color: 'white',
+                    borderRadius: '50%',
+                    width: '20px',
+                    height: '20px'
+                },
+                theme: {
+                    'cl-primary': '#4CAF50',
+                    'cl-danger': '#f44336',
+                    'font-md': '1.2rem'
+                },
+                onChange: function(date, adDate, bsDate) {
+                    $('#custom-output').text(`Selected: ${date} (BS: ${JSON.stringify(bsDate)}, AD: ${JSON.stringify(adDate)})`);
+                }
+            });
+            
+            console.log('Datepickers initialized successfully!');
+
+
+
+            // Demo core utilities
+            demoCoreUtilities();
+        });
+
+        // React DatePicker methods
+        function getBsReactValue() {
+            const value = $('#bs-datepicker-react').nepaliDatePicker('getValue');
+            alert(`BS React Value: ${value}`);
+        }
+
+        function setBsReactValue() {
+            $('#bs-datepicker-react').nepaliDatePicker('setValue', '2081-01-15');
+        }
+
+        function destroyBsReact() {
+            $('#bs-datepicker-react').nepaliDatePicker('destroy');
+        }
+
+        function getAdReactValue() {
+            const value = $('#ad-datepicker-react').nepaliDatePicker('getValue');
+            alert(`AD React Value: ${value}`);
+        }
+
+        function setAdReactValue() {
+            $('#ad-datepicker-react').nepaliDatePicker('setValue', '2024-01-15');
+        }
+
+        function destroyAdReact() {
+            $('#ad-datepicker-react').nepaliDatePicker('destroy');
+        }
+
+
+
+        // Demo core utilities
+        function demoCoreUtilities() {
+            // This would normally use the imported utilities
+            // For demo purposes, we'll show placeholder values
+            setTimeout(() => {
+                $('#ad-to-bs').text('2080-10-02');
+                $('#bs-to-ad').text('2024-04-28');
+                $('#total-days').text('30 days');
+            }, 1000);
+        }
+    </script>
+
+    <!-- Include the library -->
+    <script src="../../dist/jquery.js"></script>
+</body>
+</html>

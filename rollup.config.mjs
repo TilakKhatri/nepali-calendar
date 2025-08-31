@@ -48,4 +48,57 @@ export default [
     ],
     external: ['react', 'react-dom'],
   },
+  // jQuery build
+  {
+    input: './src/jquery/index.ts',
+    output: [
+      {
+        file: 'dist/jquery.esm.js',
+        format: 'esm',
+        sourcemap: true,
+        name: 'NepaliDatePicker',
+      },
+      {
+        file: 'dist/jquery.js',
+        format: 'umd',
+        sourcemap: true,
+        name: 'NepaliDatePicker',
+        globals: {
+          jquery: '$',
+          react: 'React',
+          'react-dom': 'ReactDOM'
+        },
+      },
+    ],
+    plugins: [
+      resolve({
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      }),
+      commonjs(),
+      typescript({
+        tsconfig: './tsconfig.json',
+        sourceMap: true,
+      }),
+      babel({
+        babelHelpers: 'bundled',
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        include: ['src/**/*', 'node_modules/**'],
+        presets: [
+          [
+            '@babel/preset-env',
+            {
+              targets: {
+                ie: '11'
+              },
+              modules: false,
+            },
+          ],
+          '@babel/preset-react'
+        ],
+        plugins: ['@babel/plugin-transform-class-properties'],
+      }),
+    ],
+    external: ['react', 'react-dom', 'jquery'],
+  },
+
 ];

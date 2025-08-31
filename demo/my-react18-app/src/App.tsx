@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
-import { DatePicker } from 'hamro-nepali-patro';
-// import {DatePicker} from '../../../src/index';
+// import { DatePicker } from 'hamro-nepali-patro';
+import {DatePicker} from '../../../src/index';
 import 'hamro-nepali-patro/dist/styles.css';
 function App() {
 const [selectedDate, setSelectedDate] = useState<string | null>(null);
