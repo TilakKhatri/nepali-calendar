@@ -26,6 +26,7 @@ export default [
       typescript({
         tsconfig: './tsconfig.json',
         sourceMap: true,
+        inlineSources: true,
       }),
       babel({
         babelHelpers: 'bundled',
@@ -78,6 +79,7 @@ export default [
       typescript({
         tsconfig: './tsconfig.json',
         sourceMap: true,
+        inlineSources: true,
       }),
       babel({
         babelHelpers: 'bundled',
