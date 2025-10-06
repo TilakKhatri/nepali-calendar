@@ -200,6 +200,7 @@
   width: 320px;
   z-index: 4;
   background-color: white;
+  border: 1px solid var(--gray10); 
 }
 
 .rl-nepali-date-body {

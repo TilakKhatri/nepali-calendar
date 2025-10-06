@@ -10,7 +10,7 @@ A modern React component library for Nepali (Bikram Sambat, BS) and Gregorian (A
 - 📱 **Responsive Design**: Works on all device sizes
 - 🌐 **Framework Agnostic**: Support for React and jQuery
 - 🎯 **TypeScript Support**: Full TypeScript definitions
-- 📦 **Multiple Builds**: ESM, CJS, UMD, and jQuery plugin formats
+- 📦 **Multiple Builds**: ESM, CJS, and UMD plugin formats
 
 ## Installation
 
@@ -42,51 +42,6 @@ function App() {
   );
 }
 ```
-
-### jQuery Usage
-
-#### Option 1: React-based DatePicker (requires React dependencies)
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-    <script src="node_modules/hamro-nepali-patro/dist/jquery.js"></script>
-    <link rel="stylesheet" href="node_modules/hamro-nepali-patro/dist/styles.css">
-</head>
-<body>
-    <div id="datepicker"></div>
-    
-    <script>
-        $(document).ready(function() {
-            $('#datepicker').nepaliDatePicker({
-                value: '2081-01-01',
-                dateFormat: 'yyyy-mm-dd',
-                calendarType: 'BS',
-                placeholder: 'Select BS Date',
-                showMonthDropdown: true,
-                showYearDropdown: true,
-                shouldPressOK: true,
-                showExtra: true,
-                onChange: function(date, adDate, bsDate) {
-                    console.log('Selected date:', date);
-                    console.log('AD date:', adDate);
-                    console.log('BS date:', bsDate);
-                }
-            });
-        });
-    </script>
-</body>
-</html>
-```
-
-
-
-
-
 ### Node.js Usage
 
 ```javascript
@@ -104,29 +59,6 @@ console.log(adDate); // { year: 2024, month: 4, date: 28, day: 0 }
 const totalDays = getTotalDaysInBsMonth(2081, 1);
 console.log(totalDays); // 30
 ```
-
-## jQuery Plugin Methods
-
-### Initialization
-
-```javascript
-$('#element').nepaliDatePicker(options);
-```
-
-### Methods
-
-```javascript
-// Get current value
-const value = $('#element').nepaliDatePicker('getValue');
-
-// Set value
-$('#element').nepaliDatePicker('setValue', '2081-01-15');
-
-// Destroy instance
-$('#element').nepaliDatePicker('destroy');
-```
-
-
 
 ## Configuration Options
 
@@ -302,70 +234,6 @@ theme: {
 }
 ```
 
-### Complete Styling Example
-
-```javascript
-$('#datepicker').nepaliDatePicker({
-    // Basic configuration
-    value: '2081-01-01',
-    dateFormat: 'yyyy-mm-dd',
-    calendarType: 'BS',
-    size: 'large',
-    showMonthDropdown: 'full',
-    showYearDropdown: [2080, 2081, 2082, 2083, 2084, 2085],
-    shouldPressOK: true,
-    showExtra: true,
-    isClearable: true,
-    hideOnSelect: false,
-    
-    // Input styling
-    inputStyle: {
-        border: '2px solid #4CAF50',
-        borderRadius: '8px',
-        padding: '12px 16px',
-        fontSize: '16px',
-        color: '#4CAF50',
-        backgroundColor: '#f8f9fa',
-        transition: 'all 0.3s ease'
-    },
-    inputClassName: 'custom-input',
-    placeholderColor: '#4CAF50',
-    
-    // Icon styling
-    calendarIconStyle: {
-        color: '#4CAF50',
-        fontSize: '20px',
-        cursor: 'pointer',
-        transition: 'transform 0.2s ease'
-    },
-    crossIconStyle: {
-        background: '#4CAF50',
-        color: 'white',
-        borderRadius: '50%',
-        width: '20px',
-        height: '20px',
-        cursor: 'pointer'
-    },
-    
-    // Calendar styling
-    calendarStyle: {
-        backgroundColor: 'white',
-        border: '1px solid #dee2e6',
-        borderRadius: '8px',
-        boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-        padding: '16px'
-    },
-    
-    // Theme customization
-    theme: {
-        'cl-primary': '#4CAF50',
-        'cl-danger': '#f44336',
-        'font-md': '1.2rem',
-        'border-radius': '8px',
-        'shadow-md': '0 4px 8px rgba(0,0,0,0.15)'
-    }
-});
-```
 
 ### CSS Customization
 
@@ -501,45 +369,6 @@ theme: {
 | `calendarStyle` | object | CSS styles for calendar container |
 | `calendarClassName` | string | CSS class for calendar container |
 | `theme` | object | CSS custom properties for theming |
-
-## Core Utilities
-
-### Date Conversion
-
-```javascript
-import { ad2bs, bs2ad } from 'hamro-nepali-patro';
-
-// Convert AD to BS
-const bsDate = ad2bs(2024, 1, 15);
-// Returns: { year: 2080, month: 10, date: 2, day: 1 }
-
-// Convert BS to AD
-const adDate = bs2ad(2081, 1, 15);
-// Returns: { year: 2024, month: 4, date: 28, day: 0 }
-```
-
-### Date Validation
-
-```javascript
-import { isDateValidWithFormat } from 'hamro-nepali-patro';
-
-const isValid = isDateValidWithFormat('2081-01-15', 'yyyy-mm-dd');
-// Returns: true
-```
-
-### Date Formatting
-
-```javascript
-import { formatBsDate, parseBsDate } from 'hamro-nepali-patro';
-
-// Format BS date
-const formatted = formatBsDate({ year: 2081, month: 1, date: 15 }, 'yyyy-mm-dd');
-// Returns: '2081-01-15'
-
-// Parse BS date
-const parsed = parseBsDate('2081-01-15', 'yyyy-mm-dd');
-// Returns: { year: 2081, month: 1, date: 15 }
-```
 
 ## Browser Support
 

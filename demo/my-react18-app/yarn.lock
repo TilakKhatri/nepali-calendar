@@ -1115,10 +1115,10 @@ graphemer@^1.4.0:
   resolved "https://registry.yarnpkg.com/graphemer/-/graphemer-1.4.0.tgz#fb2f1d55e0e3a1849aeffc90c4fa0dd53a0e66c6"
   integrity sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==
 
-hamro-nepali-patro@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/hamro-nepali-patro/-/hamro-nepali-patro-1.2.2.tgz#fb78cc7488f5ad2e38e35a2bb1394a03c037540f"
-  integrity sha512-Irqy/Bpo+MehPl0MrKXOP48eSd8XqQE8OBa9FYDGHcerOsEagDw1Hia/cOxdZCkpo6x1F8jBeFMfVnLdWQKffg==
+hamro-nepali-patro@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/hamro-nepali-patro/-/hamro-nepali-patro-2.0.0.tgz#c1344946801abbe4bf64806beb9b9661b2e6d2f8"
+  integrity sha512-rlUyQVsu8A0dkdDGfBY1pkFhrcqJ00ZOepEtShf8Y4+Gp+V8CbvHb3vC3Db5jwtrMYo2Bb3plKMKauvdMa8FpA==
   dependencies:
     "@popperjs/core" "^2.11.8"
     date-fns "^4.1.0"

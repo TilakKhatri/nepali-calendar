@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
-// import { DatePicker } from 'hamro-nepali-patro';
-import {DatePicker} from '../../../src/index';
+import { DatePicker } from 'hamro-nepali-patro';
+// import {DatePicker} from '../../../src/index';
 import 'hamro-nepali-patro/dist/styles.css';
 function App() {
 const [selectedDate, setSelectedDate] = useState<string | null>(null);
@@ -57,7 +57,7 @@ const handleDateChange = (date: string) => {
                 value={'2025-07-25'}
                 dateFormat={'YYYY-MM-DD'}
                 isClearable={false}
-                onChange={(val: any) => {
+                onChange={(val: string) => {
                   console.log('AD onChange val', val);
                 }}
                 hideOnSelect={false}
@@ -81,7 +81,7 @@ const handleDateChange = (date: string) => {
               dateFormat={'YYYY-MM-DD'}
               placehoder={'Select AD Date'}
               hideOnSelect={false}
-              onChange={(val: any) => {
+              onChange={(val: string) => {
                 console.log('AD onChange val', val);
               }}
               isClearable={true}

@@ -12,11 +12,9 @@ import {
   dateFormatter,
   parseDate,
   getDateObj,
-  // getDateFromObject,
 } from "../date-fns";
 import { isDateValidWithFormat } from "../core/validator";
 import { formatBsDate } from "../core/conversionMethods";
-// import { ad2bs, bs2ad, formatBsDate, parseBsDate } from "../CalendarData";
 import { IDatePicker } from "../types/main";
 
 const random_id = `rl-nepali-${Math.random()}`;
@@ -48,9 +46,7 @@ const DatePicker = (props: IDatePicker) => {
 
   const calendarType = useCalendarType(calendarTypeFromProps);
 
-  // const isAD = calendarType === "AD";
-
-  //This is the data that is sent to the NepaliCalendar
+  // This is the data that is sent to the NepaliCalendar
   const [selectedDate, setSelectedDate] = useState(value);
 
   //This is what is shown in input field;
@@ -63,27 +59,6 @@ const DatePicker = (props: IDatePicker) => {
 
   const { popupRef, inputRef, isVisible, setIsVisible, containerRef } =
     usePopper();
-
-  // const handleBlur = () => {
-  // setEnteredDate(selectedDate);
-
-  // if (isAD) {
-  //   const adDateObj = parseBsDate(selectedDate, dateFormat);
-  //   const bsDateObj = ad2bs(adDateObj.year, adDateObj.month, adDateObj.date);
-  //   const date = getDateFromObject(adDateObj);
-
-  //   typeof onChange === "function" &&
-  //     onChange(selectedDate, adDateObj, bsDateObj, date);
-  // } else {
-  //   const bsDateObj = parseBsDate(selectedDate, dateFormat);
-  //   const adDateObj = bs2ad(bsDateObj.year, bsDateObj.month, bsDateObj.date);
-  //   const date = getDateFromObject(adDateObj);
-
-  //   typeof onChange === "function" &&
-  //     onChange(selectedDate, adDateObj, bsDateObj, date);
-  // }
-  // setIsVisible(false);
-  // };
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = evt.currentTarget;
 
